@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Route::get('/blog/cateogry/{category}','App\Http\Controllers\SiteController@renderBlogPageByCategory');
 Route::get('/blog','App\Http\Controllers\SiteController@renderBlogPage');
 Route::get('/blog/{post}','App\Http\Controllers\SiteController@renderPostPage');
 

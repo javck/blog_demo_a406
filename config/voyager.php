@@ -144,7 +144,12 @@ return [
         ],
 
         'widgets' => [
-
+            App\Widgets\PostDimmer::class,
+            App\Widgets\PostDimmer::class,
+            App\Widgets\PostDimmer::class,
+            App\Widgets\PostDimmer::class,
+            App\Widgets\PostDimmer::class,
+            App\Widgets\PostDimmer::class
         ],
 
     ],

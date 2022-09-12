@@ -9,12 +9,12 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Blog</h2>
+          <h2>部落格</h2>
 
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li>Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia reiciendis</li>
+            <li><a href="{{ url('/') }}">首頁</a></li>
+            <li><a href="{{ url('/blog') }}">部落格</a></li>
+            <li>{{ $post->category->title }}</li>
           </ol>
         </div>
 
@@ -32,7 +32,7 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="{{ asset('img/blog/blog-1.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ Voyager::image($post->pic) }}" alt="{{ $post->title }}" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -41,9 +41,9 @@
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{ $post->category->title }}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ url('/blog/'. $post->id) }}">{{ $post->category->title }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ url('/blog/'. $post->id) }}"><time datetime="{{ $post->created_at->toDateString() }}">{{ $post->created_at->toDateString() }}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ url('/blog/'. $post->id) }}">12 Comments</a></li>
                 </ul>
               </div>
 
