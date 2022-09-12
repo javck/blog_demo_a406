@@ -41,7 +41,7 @@
               <div class="entry-meta">
                 <ul>
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="{{ $post->created_at->toDateString()}}">{{ $post->created_at->toDateString()}}</time></a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
                 </ul>
               </div>
@@ -58,14 +58,11 @@
             </article><!-- End blog entry -->
             @endforeach
             
+            <!-- 分頁開始   -->
 
-            <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
+            {{ $posts->links() }}
+            <!-- 分頁結束   -->
+            
 
           </div><!-- End blog entries list -->
 

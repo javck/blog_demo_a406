@@ -9,7 +9,7 @@ class SiteController extends Controller
 {
     public function renderBlogPage()
     {
-        $posts = Post::where('status','published')->orderBy('created_at','desc')->get();
+        $posts = Post::where('status','published')->orderBy('created_at','desc')->paginate(5);
         return view('blog',compact('posts'));
     }
 

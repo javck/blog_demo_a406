@@ -24,3 +24,5 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::get('/blog','App\Http\Controllers\SiteController@renderBlogPage');
 Route::get('/blog/{post}','App\Http\Controllers\SiteController@renderPostPage');
+
+Route::view('/info','info');
