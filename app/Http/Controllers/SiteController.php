@@ -13,8 +13,9 @@ class SiteController extends Controller
         return view('blog',compact('posts'));
     }
 
-    public function renderPostPage()
+    public function renderPostPage($id)
     {
-        return view('post');
+        $post = Post::findOrFail($id);
+        return view('post',compact('post'));
     }
 }

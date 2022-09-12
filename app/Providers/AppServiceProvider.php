@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Builder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::defaultView('pagination::bootstrap-4');
-        View::composer(['blog','blog/*'], function ($view) {
-            $categories = Category::where('enabled',true)->orderBy('sort','asc')->get();
+        View::composer(['blog','post','blog/*'], function ($view) {
+            $categories = Category::where('enabled',true)->orderBy('sort','asc')->withCount(['posts' => function (Builder $query) {
+                $query->where('status', 'published');
+                }])->get();
             $view->with('categories',$categories);
         });
     }

@@ -79,13 +79,7 @@
               </div><!-- End sidebar search formn-->
 
               <h3 class="sidebar-title">分類</h3>
-              <div class="sidebar-item categories">
-                <ul>
-                  @foreach ($categories as $category)
-                    <li><a href="{{ url('/categories/' . $category->id) }}">{{ $category->title }} <span>(??)</span></a></li>
-                  @endforeach
-                </ul>
-              </div><!-- End sidebar categories-->
+              @include('partials.categories')
 
               <h3 class="sidebar-title">Recent Posts</h3>
               <div class="sidebar-item recent-posts">
