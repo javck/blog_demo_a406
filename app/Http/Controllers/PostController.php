@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return Post::get();
     }
 
     /**
@@ -24,7 +25,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('title','id');
+        return view('posts.create',compact('categories'));
     }
 
     /**
@@ -47,7 +49,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('posts');
     }
 
     /**
@@ -56,9 +58,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $categories = Category::pluck('title','id');
+        return view('posts.edit',compact('categories','post'));
     }
 
     /**
@@ -70,7 +74,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $post = Post::findOrFail($id);
+        $post->update($data);
+        return redirect('posts');
     }
 
     /**

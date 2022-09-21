@@ -30,7 +30,7 @@ class SiteController extends Controller
     public function renderMyPostForm()
     {
         $categories = Category::pluck('title','id');
-        return view('post_form',compact('categories'));
+        return view('posts.create',compact('categories'));
     }
 
     
