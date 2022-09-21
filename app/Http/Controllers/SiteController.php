@@ -26,4 +26,9 @@ class SiteController extends Controller
         $posts = $category->posts()->paginate(setting('admin.posts_per_page'));
         return view('blog',compact('posts'));
     }
+
+    public function renderMyPostForm()
+    {
+        return view('post_form');
+    }
 }
