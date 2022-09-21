@@ -8,6 +8,7 @@ Use  \TCG\Voyager\Traits\Translatable;
 
 class Post extends Model
 {
+    protected $fillable = ['title','content','content_small','sort','status','pic','category_id'];
     use HasFactory,Translatable;
 
     //一對一關係函示宣告

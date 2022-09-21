@@ -58,3 +58,8 @@ Route::get('/getallsession',function(Request $request){
 
 Route::get('/mypostform','App\Http\Controllers\SiteController@renderMyPostForm');
 Route::resource('posts','App\Http\Controllers\PostController');
+
+Route::get('/feedback', function () {
+    return view('feedback');
+});
+
