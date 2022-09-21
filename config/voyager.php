@@ -137,18 +137,18 @@ return [
                 'icon_class'   => 'voyager-home',
                 'target_blank' => true,
             ],
-            'voyager::generic.logout' => [
+            '粉絲頁' => [
+                'route'        => 'https://www.facebook.com/javck.zack',
+                'icon_class'   => 'voyager-music',
+                'target_blank' => true,
+            ],
+            '登出' => [
                 'route'      => 'voyager.logout',
                 'icon_class' => 'voyager-power',
             ],
         ],
 
         'widgets' => [
-            App\Widgets\PostDimmer::class,
-            App\Widgets\PostDimmer::class,
-            App\Widgets\PostDimmer::class,
-            App\Widgets\PostDimmer::class,
-            App\Widgets\PostDimmer::class,
             App\Widgets\PostDimmer::class
         ],
 
@@ -224,7 +224,7 @@ return [
     ],
 
     // Activate compass when environment is NOT local
-    'compass_in_production' => false,
+    'compass_in_production' => true,
 
     'media' => [
         // The allowed mimetypes to be uploaded through the media-manager.

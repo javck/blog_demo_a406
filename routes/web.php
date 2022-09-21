@@ -1,5 +1,7 @@
 <?php
 
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +29,29 @@ Route::get('/blog','App\Http\Controllers\SiteController@renderBlogPage');
 Route::get('/blog/{post}','App\Http\Controllers\SiteController@renderPostPage');
 
 Route::view('/info','info');
+
+Route::get('/storesession',function(){
+    session(['ary' => array()]);
+});
+
+Route::get('/pushsession',function(Request $request){
+    $request->session()->push('ary', 'aaa');
+});
+Route::get('/getsession',function(){
+    return session('name');
+});
+Route::get('/pullsession',function(Request $request){
+    return $request->session()->pull('price');
+});
+
+Route::get('/forgetsession',function(Request $request){
+    return $request->session()->forget('name');
+});
+
+Route::get('/flushsession',function(Request $request){
+    return $request->session()->flush();
+});
+
+Route::get('/getallsession',function(Request $request){
+    return $request->session()->all();
+});
