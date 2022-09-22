@@ -63,3 +63,4 @@ Route::get('/feedback', function () {
     return view('feedback');
 });
 
+Route::get('export/posts', 'App\Http\Controllers\PostController@export');

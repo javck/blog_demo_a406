@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Exports\PostsExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\CreatePostRequest;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -35,8 +39,29 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
+        //使用控制器實例來驗證
+        // $this->validate($request,[
+        //     'title' => 'required|max:125',
+        //     'content' => 'required',
+        //     'content_small' => 'required',
+        //     'category_id' => 'required'
+        //     ]);
+
+        //手動建立驗證器
+        // $validator = Validator::make($request->all(),[
+        //     'title' => 'required|max:125',
+        //     'content' => 'required',
+        //     'content_small' => 'required',
+        //     'category_id' => 'required'
+        // ]);
+
+        // if($validator->fails()){
+        //     //dd('validate fail');
+        //     return redirect('/posts/create')->withErrors($validator)->withInput();
+        // }
+
         $data = $request->all();
         Post::create($data);
     }
@@ -89,5 +114,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //匯出文章內容 Excel 檔案
+    public function export() 
+    {
+        return Excel::download(new PostsExport, 'posts.xlsx');
     }
 }

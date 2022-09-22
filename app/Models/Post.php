@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 Use  \TCG\Voyager\Traits\Translatable;
 
 class Post extends Model
@@ -14,5 +15,14 @@ class Post extends Model
     //一對一關係函示宣告
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function getStatusName()
+    {
+        if($this->status == 'draft'){
+            return '草稿';
+        }else{
+            return '上架';
+        }
     }
 }
