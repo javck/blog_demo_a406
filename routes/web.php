@@ -64,3 +64,4 @@ Route::get('/feedback', function () {
 });
 
 Route::get('export/posts', 'App\Http\Controllers\PostController@export');
+Route::get('import/posts', 'App\Http\Controllers\PostController@import');

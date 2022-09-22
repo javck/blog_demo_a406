@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use App\Exports\PostsExport;
+use App\Imports\PostsImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\CreatePostRequest;
@@ -120,5 +121,13 @@ class PostController extends Controller
     public function export() 
     {
         return Excel::download(new PostsExport, 'posts.xlsx');
+    }
+
+    //匯入文章內容
+    public function import() 
+    {
+        Excel::import(new PostsImport, 'posts.xlsx');
+
+        return redirect('/')->with('success', 'All good!');
     }
 }
