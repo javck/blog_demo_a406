@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([PostSeeder::class]);
         $this->call([TagSeeder::class]);
         $this->call([PostTagSeeder::class]);
+        $this->call([ItemSeeder::class]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1');//開啟MySQL外鍵偵測
         Eloquent::reguard();//開啟外鍵偵測
     }

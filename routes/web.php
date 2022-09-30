@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Item;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -85,4 +86,63 @@ Route::get('/dl',function(){
 
 Route::get('/file',function(){
     return response()->file(storage_path('app/public/files/test.pdf'));
+});
+
+//示範將商品加入購物車
+Route::get('/addcart',function(){
+    $item = Item::find(3);
+    \Cart::session(Auth::user()->id)->add([
+        'id' => $item->id,
+        'name' => $item->title,
+        'price' => $item->price,
+        'quantity' => 3,
+        'attributes' => array(),
+        'associatedModel' => $item
+    ]);
+});
+
+//示範取得購物車內容
+Route::get('/getcartcontent',function(){
+    $carts = \Cart::session(Auth::user()->id)->getContent();
+    return $carts;
+    // $result = '';
+    // foreach ($carts as $cart) {
+    //     $result = $result . $cart->name . ',';
+    // }
+    // return $result;
+});
+
+//示範變更購物車中商品的數量，update是做增減
+Route::get('/updatecart',function(){
+    \Cart::session(Auth::user()->id)->update(1,[
+        'quantity' => -2
+    ]);
+});
+
+//示範刪除購物車中的商品
+Route::get('/removecart',function(){
+    \Cart::session(Auth::user()->id)->remove(1);
+});
+
+
+//示範購物車是否為空
+Route::get('/iscartempty',function(){
+    return \Cart::session(Auth::user()->id)->isEmpty();
+});
+
+//示範取得購物車商品總數
+Route::get('/getcartquantity',function(){
+    $qty = \Cart::session(Auth::user()->id)->getTotalQuantity();
+    return $qty;
+});
+
+//示範取得購物車小計
+Route::get('/getcartsubtotal',function(){
+    $subtotal = \Cart::session(Auth::user()->id)->getSubtotal();
+    return $subtotal;
+});
+
+//示範清空購物車
+Route::get('/clearcart',function(){
+   \Cart::session(Auth::user()->id)->clear();
 });
