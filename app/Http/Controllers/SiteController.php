@@ -85,7 +85,8 @@ class SiteController extends Controller
                 $order->pay_type = 'credit';
             }
             $order->trade_no = $response['TradeNo']; //綠界訂單編號
-            $order->pay_at = Carbon::now();
+            $order->pay_at = Carbon::createFromFormat('Y/m/d H:i:s',$response['PaymentDate']);
+            $order->subtotal = $response['TradeAmt'];
             $order->status = 'paid';
             $order->save();
             Log::info('訂單編號' . $order->id . '付款成功');
