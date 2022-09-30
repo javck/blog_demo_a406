@@ -146,3 +146,8 @@ Route::get('/getcartsubtotal',function(){
 Route::get('/clearcart',function(){
    \Cart::session(Auth::user()->id)->clear();
 });
+
+Route::namespace('App\Http\Controllers')->group(function(){
+    Route::get('/checkout','SiteController@checkout');
+    Route::post('/checkout/callback','SiteController@checkoutCallback');
+});

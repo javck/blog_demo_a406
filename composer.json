@@ -14,7 +14,8 @@
         "laravelcollective/html": "^6.3",
         "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "2.0",
-        "tcg/voyager": "^1.5"
+        "tcg/voyager": "^1.5",
+        "tsaiyihua/laravel-ecpay": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
