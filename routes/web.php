@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,3 +66,23 @@ Route::get('/feedback', function () {
 
 Route::get('export/posts', 'App\Http\Controllers\PostController@export');
 Route::get('import/posts', 'App\Http\Controllers\PostController@import');
+
+//回應介紹
+Route::get('/testv1', function () {
+    return response()->json([
+        'name' => 'Abigail',
+        'state' => 'CA',
+    ]);
+});
+
+Route::get('/testv2', function () {
+    return redirect('https://www.google.com');
+});
+
+Route::get('/dl',function(){
+    return response()->download(storage_path('app/public/files/test.pdf'));
+});
+
+Route::get('/file',function(){
+    return response()->file(storage_path('app/public/files/test.pdf'));
+});
