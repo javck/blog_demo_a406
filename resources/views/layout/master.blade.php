@@ -28,6 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  @yield('css')
 
   <!-- =======================================================
   * Template Name: Moderna - v4.9.1
@@ -161,7 +162,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
-
+  @yield('js')
 </body>
 
 </html>

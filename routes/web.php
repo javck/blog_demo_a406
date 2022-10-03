@@ -151,3 +151,5 @@ Route::namespace('App\Http\Controllers')->group(function(){
     Route::get('/checkout','SiteController@checkout');
     Route::post('/checkout/callback','SiteController@checkoutCallback');
 });
+
+Route::view('livewire','livewire');
