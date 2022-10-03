@@ -8,8 +8,8 @@
     @livewireScripts
 @stop
 
-@section('content')
+@section('body')
     HTML1
-   @livewire('counter',['msg'=>'Hello Zack'])
+   @livewire('counter')
      HTML2
 @stop

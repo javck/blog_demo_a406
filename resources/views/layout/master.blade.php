@@ -28,6 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  @livewireStyles
   @yield('css')
 
   <!-- =======================================================
@@ -163,6 +164,7 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
   @yield('js')
+  @livewireScripts
 </body>
 
 </html>
