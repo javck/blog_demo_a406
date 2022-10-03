@@ -153,3 +153,5 @@ Route::namespace('App\Http\Controllers')->group(function(){
 });
 
 Route::view('livewire','livewire');
+
+Route::get('onepost/{post}',App\Http\Livewire\Posts\OnePost::class);

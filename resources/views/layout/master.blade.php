@@ -57,7 +57,7 @@
   </header><!-- End Header -->
 
   <main id="main">
-    @yield('content')
+    @yield('body')
     
 
   </main><!-- End #main -->
