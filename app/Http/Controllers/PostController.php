@@ -7,20 +7,27 @@ use App\Models\Category;
 use App\Exports\PostsExport;
 use App\Imports\PostsImport;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\CreatePostRequest;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return Post::get();
+    public function index(){
+        $posts = Post::get();
+        return json_encode($posts, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function show(Request $request,$id){
+        $post = Post::findOrFail($id);
+        return json_encode($post, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function store(Request $request){
+        $data = ['title' => $request->title , 'content' => $request->content];
+
+        return response()->noContent(Response::HTTP_CREATED); //回傳201狀態碼
     }
 
     /**
@@ -32,50 +39,6 @@ class PostController extends Controller
     {
         $categories = Category::pluck('title','id');
         return view('posts.create',compact('categories'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CreatePostRequest $request)
-    {
-        //使用控制器實例來驗證
-        // $this->validate($request,[
-        //     'title' => 'required|max:125',
-        //     'content' => 'required',
-        //     'content_small' => 'required',
-        //     'category_id' => 'required'
-        //     ]);
-
-        //手動建立驗證器
-        // $validator = Validator::make($request->all(),[
-        //     'title' => 'required|max:125',
-        //     'content' => 'required',
-        //     'content_small' => 'required',
-        //     'category_id' => 'required'
-        // ]);
-
-        // if($validator->fails()){
-        //     //dd('validate fail');
-        //     return redirect('/posts/create')->withErrors($validator)->withInput();
-        // }
-
-        $data = $request->all();
-        Post::create($data);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return redirect('posts');
     }
 
     /**

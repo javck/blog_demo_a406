@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')->unsigned()->index(); //文章分類
+            $table->bigInteger('category_id')->unsigned()->index()->nullable(); //文章分類
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('title', 40); //標題
             $table->string('content_small', 80)->nullable(); //部分內容
