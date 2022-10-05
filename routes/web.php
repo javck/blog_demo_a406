@@ -156,3 +156,5 @@ Route::view('livewire','livewire');
 
 Route::get('onepost/{post}',App\Http\Livewire\Posts\OnePost::class);
 Route::get('allpost',App\Http\Livewire\Posts\AllPost::class);
+
+Route::get('/utilities/createsitemap','App\Http\Controllers\SiteController@createSitemap');

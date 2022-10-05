@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use TsaiYiHua\ECPay\Checkout;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Sitemap\SitemapGenerator;
 
 class SiteController extends Controller
 {
@@ -96,5 +97,8 @@ class SiteController extends Controller
         return redirect('/'); //返回首頁
     }
 
-    
+    public function createSitemap()
+    {
+        SitemapGenerator::create('http://localhost:6080/blog_a406/public/')->writeToFile(public_path('sitemap.xml'));
+    }
 }

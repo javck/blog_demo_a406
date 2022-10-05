@@ -15,6 +15,7 @@
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "2.0",
+        "spatie/laravel-sitemap": "^6.2",
         "tcg/voyager": "^1.5",
         "tsaiyihua/laravel-ecpay": "^3.0"
     },
